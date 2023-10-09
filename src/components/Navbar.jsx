@@ -3,6 +3,7 @@ import { Menu } from "@headlessui/react";
 import { LuMenuSquare } from "react-icons/lu";
 import Nav from "./Nav";
 import { MdRestaurantMenu } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const navs = [
   {
@@ -15,7 +16,7 @@ const navs = [
   },
   {
     name: "about",
-    link: "/about",
+    link: "/",
   },
 ];
 
@@ -28,22 +29,29 @@ const Navbar = () => {
       <nav className="hidden md:flex gap-[3rem]">
         {navs.map((nav) => {
           return (
-            <a
+            <Link
+              to={nav.link}
               className="uppercase font-semibold hover:text-teal-500"
-              href={nav.link}
             >
               {nav.name}
-            </a>
+            </Link>
           );
         })}
       </nav>
 
       <Menu as="div" className="relative md:hidden inline-block text-center">
-        <Menu.Button className="w-full">
-          <LuMenuSquare size={35} />
-        </Menu.Button>
-
-        <Nav />
+        {({ open }) => (
+          <>
+            <Menu.Button className="w-full">
+              {open ? (
+                <MdRestaurantMenu size={35} />
+              ) : (
+                <LuMenuSquare size={35} />
+              )}
+            </Menu.Button>
+            {open && <Nav />}
+          </>
+        )}
       </Menu>
     </div>
   );
