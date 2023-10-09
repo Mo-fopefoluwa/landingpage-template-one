@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Menu } from "@headlessui/react";
 import { LuMenuSquare } from "react-icons/lu";
 import Nav from "./Nav";
@@ -38,7 +38,7 @@ const Navbar = () => {
         })}
       </nav>
 
-      <Menu as="div" className="relative inline-block text-center">
+      <Menu as="div" className="relative md:hidden inline-block text-center">
         <Menu.Button className="w-full">
           <LuMenuSquare size={35} />
         </Menu.Button>
